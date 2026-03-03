@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #222;
+  padding: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.navbar a:hover {
+  background-color: #444;
+}
+
+.main-title {
+  text-align: center;
+  margin-top: 90px;
+  font-size: 45pt;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.hbtn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #222;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  margin: 10px;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hbtn:hover {
+  background-color: #3a3a3a;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2e4da7;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  margin: 10px;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background-color: #4062c7;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.input-field {
+  width: 250px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #fffecf;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 6px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+select {
+  width: 270px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border: 1px solid #222;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.raido-group {
+  margin: 10px;
+}
+
+.raido-group label {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+  cursor: pointer;
+}
