@@ -7,14 +7,21 @@
   </head>
   <body>
     <nav class="navbar">
-      <a href="Home.html">Home</a>
-      <a href="SignIn.html">Sign in</a>
-      <a href="SignUp.html">Sign up</a>
+      <div class="nav-left">
+        <a href="Home.html">Home</a>
+        <a href="SignIn.html">Sign in</a>
+        <a href="SignUp.html">Sign up</a>
+        <a href="AboutUs.html">About us</a>
+      </div>
+
+      <div class="nav-right">
+        <span class="logo">Velmora</span>
+      </div>
     </nav>
 
     <h2 class="main-title">Sign in</h2>
     <div class="form-container">
-      <form>
+      <form action="Home.html">
         <!-- Email -->
         <label for="Email"><b>Email:</b></label
         ><br />
@@ -35,7 +42,9 @@
           class="input-field"
         /><br /><br />
 
-        <button type="submit" class="btn"><b>Sign in</b></button>
+        <button type="submit" class="btn">
+          <b>Sign in</b>
+        </button>
       </form>
     </div>
   </body>
