@@ -40,7 +40,7 @@
 
     /* Watches */
     INSERT INTO watches (brand_id, name, price, image, description, stock) VALUES
-(1,'Cosmograph Daytona',921957.51,'watches-img/Rolex-Cosmograph-Daytona.jpg','Luxury high-performance chronograph',3),
+/* (1,'Cosmograph Daytona',921957.51,'watches-img/Rolex-Cosmograph-Daytona.jpg','Luxury high-performance chronograph',3), */
 (2,'Seamaster Aqua Terra 150M',387331.26,'watches-img/Omega-Seamaster-Aqua-Terra.jpg','Elegant everyday luxury watch',6),
 (3,'G-SHOCK GST-B100D-1A',21003.17,'watches-img/Casio-G-SHOCK-GST-B100D-1A.jpg','Tough hybrid sport watch',12),
 (4,'6159G-001',8728591.84,'watches-img/Petek-philippe-6159G-001','Refined high-end dress watch',0),
@@ -63,3 +63,50 @@
     UPDATE brands SET image = 'brands_img/Citizen.jpg' WHERE name = 'Citizen';
     /*  */
 /*  */
+
+INSERT INTO watches (brand_id, name, price, image, description, stock) VALUES
+(1,'Cosmograph Daytona',921957.51,'watches-img/Rolex-Cosmograph-Daytona.jpg','Luxury high-performance chronograph',3);
+
+DELETE FROM watches WHERE id=2;
+
+UPDATE watches 
+SET image = 'watches-img/GST-B100D-1A.jpg'
+WHERE id = 20
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    role VARCHAR(20) DEFAULT 'Customer'
+);
+
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_cart_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE cart_item (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cart_id INT NOT NULL,
+    watch_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    CONSTRAINT fk_cartitem_cart
+        FOREIGN KEY (cart_id)
+        REFERENCES cart(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_cartitem_watch
+        FOREIGN KEY (watch_id)
+        REFERENCES watches(id)
+        ON DELETE CASCADE
+);
+
+ALTER TABLE users
+ADD gender VARCHAR(10),
+ADD country VARCHAR(50);
