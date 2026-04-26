@@ -1,0 +1,26 @@
+<svg width="520" height="140" viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      letter-spacing: 6px;
+      fill: #fbf7ef;
+    }
+    .tm {
+      font-size: 23px;
+      fill: #fbf7ef;
+    }
+    .accent {
+      fill: #fbf7ef;
+    }
+  </style>
+
+  <!-- Accent Line (Luxury gold) -->
+  <rect x="60" y="95" width="400" height="2" class="accent"/>
+
+  <!-- Brand Name -->
+  <text x="75" y="80" class="brand">VELMORA</text>
+
+  <!-- Trademark -->
+  <text x="430" y="40" class="tm">™</text>
+</svg>
