@@ -28,7 +28,7 @@
 
         <div class="watch-carousel" id="watchCarousel">
             <?php foreach ($watches as $watch): ?>
-            <a class="watch-link" href="WatchPage_view.php?id=<?php echo $watch['id']; ?>">
+            <a class="watch-link" href="WatchPage.php?id=<?php echo $watch['id']; ?>">
                 <div class="watch-box">
                     <img src="<?php echo htmlspecialchars($watch['image']); ?>"
                         alt="<?php echo htmlspecialchars($watch['name']); ?>">

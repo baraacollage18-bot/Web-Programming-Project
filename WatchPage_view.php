@@ -1,31 +1,3 @@
-<?php
-session_start();
-include 'db.php';
-
-if (!isset($_GET['id'])) {
-    die("No watch selected");
-}
-
-$id = (int) $_GET['id'];
-
-$stmt = $conn->prepare("
-    SELECT watches.*, brands.name AS brand_name
-    FROM watches
-    JOIN brands ON watches.brand_id = brands.id
-    WHERE watches.id = ?
-");
-
-$stmt->bind_param("i", $id);
-$stmt->execute();
-
-$result = $stmt->get_result();
-$watch = $result->fetch_assoc();
-
-if (!$watch) {
-    die("Watch not found");
-}
-?>
-
 <!doctype html>
 <html>
 
@@ -48,7 +20,7 @@ if (!$watch) {
     <p>Stock: <?php echo htmlspecialchars($watch['stock']); ?></p>
 
     <form action="add_to_cart.php" method="POST">
-        <input type="hidden" name="watch_id" value="<?php echo $watch['id']; ?>">
+        <input type="hidden" name="watch_id" value="<?php echo htmlspecialchars($watch['id']); ?>">
         <button type="submit">Add to Cart</button>
     </form>
 
