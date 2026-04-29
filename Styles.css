@@ -20,7 +20,7 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 430px;
+  width: 470px;
   height: 100%;
   background-color: #4f5450;
   clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
@@ -31,6 +31,27 @@ body {
 .nav-right {
   position: relative;
   z-index: 1;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn {
+  background-color: rgba(251, 247, 239, 0.15);
+  color: #fbf7ef;
+  border: 1px;
+  border-radius: 8px;
+  font-size: 24px;
+  padding: 6px 10px;
+  margin-top: -6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-btn:hover {
+  background-color: rgba(251, 247, 239, 0.3);
 }
 
 .navbar a {
@@ -53,7 +74,6 @@ body {
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin-right: 20px;
   font-size: 23pt;
 }
 
@@ -310,4 +330,67 @@ input[type="radio"] {
 
 .carousel-btn:hover {
   background-color: #333;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -380px;
+  width: 260px;
+  height: 100vh;
+  background-color: #4f5450;
+  z-index: 1000;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: right 0.35s ease;
+}
+
+.side-menu.active {
+  right: 0;
+}
+
+.side-menu a {
+  color: #fbf7ef;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.side-menu a:hover {
+  background-color: rgba(251, 247, 239, 0.15);
+}
+
+.close-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: #fbf7ef;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
