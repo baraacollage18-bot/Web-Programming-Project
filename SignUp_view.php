@@ -28,6 +28,7 @@
         <a href="SignIn.php">Sign in</a>
         <a href="SignUp.php">Sign up</a>
         <a href="AboutUs.php">About us</a>
+        <a href="Account.php">Account</a>
     </div>
 
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -40,35 +41,34 @@
         <?php endif; ?>
 
         <form action="SignUp.php" method="POST">
-            <!-- Name -->
+
             <label for="Name"><b>Username:</b></label><br />
             <input type="text" id="Name" name="username" class="input-field" /><br /><br />
 
-            <!-- Email -->
             <label for="Email"><b>Email:</b></label><br />
             <input type="text" id="Email" name="email" class="input-field" /><br /><br />
 
-            <!-- Password -->
             <label for="Password"><b>Password:</b></label><br />
             <input type="password" id="Password" name="password" class="input-field" /><br /><br />
 
-            <!-- ReEnterPassword -->
             <label for="ReEnterPassword"><b>ReEnterPassword:</b></label><br />
             <input type="password" id="ReEnterPassword" name="rePassword" class="input-field" /><br /><br />
 
             <label for="PhoneNumber"><b>Phone Number:</b></label><br>
             <input type="text" id="PhoneNumber" name="phoneNumber" class="input-field"><br><br>
 
-            <div class="radio-group">
-                <!-- Gender -->
-                <label for="Gender"><b>Gender:</b></label><br /><br />
-                <input type="radio" id="Gender" name="gender" value="Male" />
-                <label for="Male"><b>Male</b></label>
+            <div class="raido-group">
+                <label>
+                    <input type="radio" name="gender" value="Male">
+                    Male
+                </label>
 
-                <input type="radio" id="Gender" name="gender" value="Female" />
-                <label for="Female"><b>Female</b></label><br /><br />
-            </div>
-            <!-- Country -->
+                <label>
+                    <input type="radio" name="gender" value="Female">
+                    Female
+                </label>
+            </div><br>
+
             <label for="Country"><b>Country</b></label><br />
             <select for="Country" name="country">
                 <option value="EG">Egypt</option>

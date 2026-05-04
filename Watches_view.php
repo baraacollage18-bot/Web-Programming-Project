@@ -32,6 +32,7 @@
         <a href="SignIn.php">Sign in</a>
         <a href="SignUp.php">Sign up</a>
         <a href="AboutUs.php">About us</a>
+        <a href="Account.php">Account</a>
     </div>
 
     <div class="menu-overlay" id="menuOverlay"></div>

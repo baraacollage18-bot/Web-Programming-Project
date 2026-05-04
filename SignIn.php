@@ -16,14 +16,23 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     if($result->num_rows === 1){
         session_start();
         $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['id'];
 
-        header("Location: index.php");
-        exit();
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+
+        if($user['role'] === 'Admin'){
+            header("Location: admin.php");
+            exit();
+        } else {
+            header("Location: index.php");
+            exit();
+        }
+
     } else{
         header("Location: SignIn.php?error=1");
         exit();
     }
 }
+
 include 'SignIn_view.php';
 ?>
