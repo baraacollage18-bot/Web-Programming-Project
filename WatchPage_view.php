@@ -10,7 +10,9 @@
 
     <nav class="navbar">
         <div class="nav-left">
-
+            <button class="cart-btn" id="cartBtn">
+                <img src="assets_img/cart-svgrepo-com.svg" class="cart-icon">
+            </button>
         </div>
 
         <div class="nav-right">
@@ -21,6 +23,7 @@
             <button class="menu-btn" id="menuBtn">☰</button>
         </div>
     </nav>
+    <?php include 'cart_panel.php'; ?>
 
     <div class="side-menu" id="sideMenu">
         <button class="close-btn" id="closeMenu"></button>
@@ -31,13 +34,15 @@
         <a href="AboutUs.php">About us</a>
     </div>
 
+    <div class="menu-overlay" id="menuOverlay"></div>
+
     <section class="watch-layout">
 
 
         <div class="watch-panel">
             <div class="image-panel">
                 <img src="<?php echo htmlspecialchars($watch['image']); ?>"
-                    alt="<?php echo htmlspecialchars($name['name'])?>">
+                    alt="<?php echo htmlspecialchars($name['name']); ?>">
             </div>
         </div>
 
@@ -61,18 +66,24 @@
                 <p><?php echo htmlspecialchars($watch['stock']); ?> Available</p>
             </div>
 
-            <form action="" method="POST" class="cart-form">
+            <form action="add_to_cart.php" method="POST" class="cart-form">
                 <input type="hidden" name="watch_id" value="<?php echo $watch['id']; ?>">
 
-                <select name="quantity" class="quantity-select">
-                    <option value="1">01</option>
-                    <option value="2">02</option>
-                    <option value="3">03</option>
-                    <option value="4">04</option>
-                    <option value="5">05</option>
+                <select name="quantity" class="quantity-select" <?= ($watch['stock'] == 0) ? 'disabled' : '' ?>>
+
+                    <?php
+                        $max = min($watch['stock'], 10);
+                        for ($i = 1; $i <= $max; $i++): ?>
+                    <option value="<?= $i ?>">
+                        <?= str_pad($i, 2, "0", STR_PAD_LEFT) ?>
+                    </option>
+                    <?php endfor; ?>
+
                 </select>
 
-                <button type="submit" class="add-cart-btn">Add to Cart</button>
+                <button type="submit" class="add-cart-btn" <?php if ($watch['stock'] == 0) echo 'disabled'; ?>>
+                    <?php echo ($watch['stock'] == 0) ? 'Out of Stock' : 'Add to Cart'; ?>
+                </button>
             </form>
         </div>
     </section>
@@ -111,11 +122,38 @@
         toast.classList.add("show");
 
         setTimeout(() => {
-            toast.classList.remove("show");
-        }, 2000);
+            form.submit();
+        }, 700);
     });
     </script>
 
+    <script>
+    const cartBtn = document.getElementById("cartBtn");
+    const cartPanel = document.getElementById("cartPanel");
+    const closeCart = document.getElementById("closeCart");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const continueShopping = document.getElementById("continueShopping");
+
+    cartBtn.addEventListener("click", () => {
+        cartPanel.classList.add("active");
+        cartOverlay.classList.add("active");
+    });
+
+    closeCart.addEventListener("click", () => {
+        cartPanel.classList.remove("active");
+        cartOverlay.classList.remove("active");
+    });
+
+    cartOverlay.addEventListener("click", () => {
+        cartPanel.classList.remove("active");
+        cartOverlay.classList.remove("active");
+    });
+
+    continueShopping.addEventListener("click", () => {
+        cartPanel.classList.remove("active");
+        cartOverlay.classList.remove("active");
+    });
+    </script>
 </body>
 
 </html>

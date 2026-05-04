@@ -110,3 +110,8 @@ CREATE TABLE cart_item (
 ALTER TABLE users
 ADD gender VARCHAR(10),
 ADD country VARCHAR(50);
+
+DESCRIBE users;
+
+ALTER TABLE users
+ADD profile_image VARCHAR(255);

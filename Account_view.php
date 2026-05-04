@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title><?php echo htmlspecialchars($brandName); ?> Watches</title>
-    <link rel="stylesheet" href="Styles.css" />
+    <meta charset="UTF-8">
+    <title>My Account</title>
+    <link rel="stylesheet" href="Styles.css">
 </head>
 
 <body>
+
     <nav class="navbar">
         <div class="nav-left">
             <button class="cart-btn" id="cartBtn">
@@ -19,10 +20,10 @@
             <div class="logo">
                 <img src="assets_img/Velmora-logo.svg">
             </div>
-
             <button class="menu-btn" id="menuBtn">☰</button>
         </div>
     </nav>
+
     <?php include 'cart_panel.php'; ?>
 
     <div class="side-menu" id="sideMenu">
@@ -32,59 +33,77 @@
         <a href="SignIn.php">Sign in</a>
         <a href="SignUp.php">Sign up</a>
         <a href="AboutUs.php">About us</a>
+        <a href="Account.php">Account</a>
     </div>
 
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <h2 class="section-title"><?php echo htmlspecialchars($brandName); ?> Watches</h2>
+    <h2 class="section-title">My Account</h2>
 
-    <section class="watch-carousel-wrapper">
-        <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+    <div class="account-box">
 
-        <div class="watch-carousel" id="watchCarousel">
-            <?php foreach ($watches as $watch): ?>
-            <a class="watch-link" href="WatchPage.php?id=<?php echo $watch['id']; ?>">
-                <div class="watch-box">
-                    <img src="<?php echo htmlspecialchars($watch['image']); ?>"
-                        alt="<?php echo htmlspecialchars($watch['name']); ?>">
+        <?php if (!empty($message)): ?>
+        <p><?php echo htmlspecialchars($message); ?></p>
+        <?php endif; ?>
 
-                    <div class="watch-overlay">
-                        <h3><?php echo htmlspecialchars($watch['name']); ?></h3>
-                        <p>Price: <?php echo htmlspecialchars($watch['price']); ?> EGP</p>
-                    </div>
-                </div>
+        <?php if (!$editMode): ?>
+
+        <p><b>ID:</b> <?php echo htmlspecialchars($user['id']); ?></p>
+        <p><b>Name:</b> <?php echo htmlspecialchars($user['username']); ?></p>
+        <p><b>Email:</b> <?php echo htmlspecialchars($user['email']); ?></p>
+        <p><b>Gender:</b> <?php echo htmlspecialchars($user['gender']); ?></p>
+        <p><b>Country:</b> <?php echo htmlspecialchars($user['country']); ?></p>
+
+        <a href="Account.php?edit=1">
+            <button>Edit Account</button>
+        </a>
+
+        <?php else: ?>
+
+        <form method="POST" action="Account.php">
+
+            <p><b>ID:</b> <?php echo htmlspecialchars($user['id']); ?></p>
+
+            <label>Name:</label>
+            <input type="text" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+
+            <label>Gender:</label>
+            <select name="gender" required>
+                <option value="Male" <?php if ($user['gender'] == 'Male') echo 'selected'; ?>>Male</option>
+                <option value="Female" <?php if ($user['gender'] == 'Female') echo 'selected'; ?>>Female</option>
+            </select>
+
+            <label>Country:</label>
+            <select name="country" required>
+                <option value="SA" <?php if ($user['country'] == 'SA') echo 'selected'; ?>>Saudi Arabia</option>
+                <option value="EG" <?php if ($user['country'] == 'EG') echo 'selected'; ?>>Egypt</option>
+                <option value="SY" <?php if ($user['country'] == 'SY') echo 'selected'; ?>>Syria</option>
+            </select>
+
+            <hr>
+
+            <h3>Change Password</h3>
+
+            <label>Old Password:</label>
+            <input type="password" name="old_password">
+
+            <label>New Password:</label>
+            <input type="password" name="new_password">
+
+            <button type="submit">Save Changes</button>
+
+            <a href="Account.php">
+                <button type="button">Cancel</button>
             </a>
-            <?php endforeach; ?>
-        </div>
 
-        <button class="carousel-btn next" id="nextBtn">&#10095;</button>
-    </section>
+        </form>
 
-    <script>
-    const carousel = document.getElementById("watchCarousel");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+        <?php endif; ?>
 
-    nextBtn.addEventListener("click", () => {
-        const card = document.querySelector(".watch-box");
-        if (!card) return;
-        const moveAmount = card.offsetWidth + 20;
-        carousel.scrollBy({
-            left: moveAmount,
-            behavior: "smooth"
-        });
-    });
-
-    prevBtn.addEventListener("click", () => {
-        const card = document.querySelector(".watch-box");
-        if (!card) return;
-        const moveAmount = card.offsetWidth + 20;
-        carousel.scrollBy({
-            left: -moveAmount,
-            behavior: "smooth"
-        });
-    });
-    </script>
+    </div>
 
     <script>
     const menuBtn = document.getElementById("menuBtn");

@@ -1,6 +1,6 @@
 <?php
-session_start();
 include 'db.php';
+session_start();
 
 if (!isset($_GET['id'])) {
     die("No watch selected");
